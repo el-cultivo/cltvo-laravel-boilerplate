@@ -1,12 +1,10 @@
 @charset "UTF-8";
 
 // Fonts
-@import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);
-
-// Variables
-@import "variables";
+@import "boilerplate/modules/_fonts";
 
 // Bootstrap
+@import "boilerplate/_bootstrap-variables";
 @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
 
 @import "_modules";

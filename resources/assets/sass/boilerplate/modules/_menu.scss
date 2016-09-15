@@ -1,0 +1,13 @@
+.menu {
+    border: 0;
+
+    &__logo {
+        width: 80px;
+    }
+
+    &__link {
+        & > li > a {
+            padding: 20px;
+        }
+    }
+}
