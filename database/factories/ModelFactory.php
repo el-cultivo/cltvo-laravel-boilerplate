@@ -12,12 +12,15 @@
 */
 
 $factory->define(App\User::class, function (Faker\Generator $faker) {
-    static $password;
-
+    $firstName = $faker->firstName;
+    $lastName = $faker->lastName;
     return [
-        'name' => $faker->name,
-        'email' => $faker->safeEmail,
-        'password' => $password ?: $password = bcrypt('secret'),
-        'remember_token' => str_random(10),
+        'name'              => App\User::createUniqueUsername($firstName,$lastName),
+        'first_name'        => $firstName,
+        'last_name'         => $lastName,
+        'email'             => $faker->unique()->email,
+        'password'          => bcrypt(str_random(10)),
+        'remember_token'    => str_random(10),
+        'active'            => mt_rand(1, 10000) <= 1/10 * 10000 //rand(1,10) <= 1 ? 0 : 1
     ];
 });
