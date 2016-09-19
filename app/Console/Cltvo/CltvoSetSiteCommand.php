@@ -13,7 +13,10 @@ class CltvoSetSiteCommand extends Command
      * @var array
      */
     protected $set_classes = [
-        // set class
+        'App\Console\Cltvo\Sets\PermissionSet',
+        'App\Console\Cltvo\Sets\RoleSet',
+        'App\Console\Cltvo\Sets\AssociatePermissionRoleSet',
+        'App\Console\Cltvo\Sets\FirstUserSet',
     ];
 
     /**
