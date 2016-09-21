@@ -32,6 +32,15 @@ class Kernel extends HttpKernel
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
         ],
 
+        'user' => [
+            'throttle:60,1',
+        ],
+
+
+        'admin' => [
+            'throttle:60,1',
+        ],
+
         'api' => [
             'throttle:60,1',
             'bindings',
