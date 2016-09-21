@@ -37,7 +37,13 @@ class RouteServiceProvider extends ServiceProvider
     {
         $this->mapWebRoutes();
 
-        $this->mapApiRoutes();
+        $this->mapUserRoutes();
+
+        $this->mapAdminRoutes();
+
+        $this->mapCltvoTestRoutes();
+
+        // $this->mapApiRoutes();
 
         //
     }
@@ -56,6 +62,60 @@ class RouteServiceProvider extends ServiceProvider
             'namespace' => $this->namespace,
         ], function ($router) {
             require base_path('routes/web.php');
+        });
+    }
+
+    /**
+     * Define the "user" routes for the application.
+     *
+     * These routes are typically user page.
+     *
+     * @return void
+     */
+    protected function mapUserRoutes()
+    {
+        Route::group([
+            'middleware' => 'user',
+            'namespace' => $this->namespace,
+            'prefix' => 'users',
+        ], function ($router) {
+            require base_path('routes/user.php');
+        });
+    }
+
+    /**
+     * Define the "admin" routes for the application.
+     *
+     * These routes are typically dashboard.
+     *
+     * @return void
+     */
+    protected function mapAdminRoutes()
+    {
+        Route::group([
+            'middleware' => 'admin',
+            'namespace' => $this->namespace,
+            'prefix' => 'admin',
+        ], function ($router) {
+            require base_path('routes/admin.php');
+        });
+    }
+
+    /**
+     * Define the "Admin" routes for the application.
+     *
+     * These routes are typically stateless.
+     *
+     * @return void
+     */
+    protected function mapCltvoTestRoutes()
+    {
+        Route::group([
+            'middleware' => 'cltvo',
+            'namespace' => $this->namespace,
+            'prefix' => 'cltvo',
+        ], function ($router) {
+            require base_path('routes/cltvo.php');
         });
     }
 
