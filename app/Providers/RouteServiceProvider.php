@@ -41,6 +41,8 @@ class RouteServiceProvider extends ServiceProvider
 
         $this->mapAdminRoutes();
 
+        $this->mapCltvoTestRoutes();
+
         // $this->mapApiRoutes();
 
         //
@@ -96,6 +98,24 @@ class RouteServiceProvider extends ServiceProvider
             'prefix' => 'admin',
         ], function ($router) {
             require base_path('routes/admin.php');
+        });
+    }
+
+    /**
+     * Define the "Admin" routes for the application.
+     *
+     * These routes are typically stateless.
+     *
+     * @return void
+     */
+    protected function mapCltvoTestRoutes()
+    {
+        Route::group([
+            'middleware' => 'cltvo',
+            'namespace' => $this->namespace,
+            'prefix' => 'cltvo',
+        ], function ($router) {
+            require base_path('routes/cltvo.php');
         });
     }
 
