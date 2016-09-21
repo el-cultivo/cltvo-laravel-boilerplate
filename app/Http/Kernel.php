@@ -66,6 +66,10 @@ class Kernel extends HttpKernel
         'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
 
-        'cltvo_test' => \App\Http\Middleware\Cltvo\CLtvoTestUrls::class
+        'cltvo_test' => \App\Http\Middleware\Cltvo\CLtvoTestUrls::class,
+
+        'permission' => \App\Http\Middleware\AuthUserPermissions::class,
+        'useraccess' => \App\Http\Middleware\AuthUserAccess::class,
+
     ];
 }
