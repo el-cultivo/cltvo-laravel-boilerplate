@@ -33,12 +33,16 @@ class Kernel extends HttpKernel
         ],
 
         'user' => [
+            'auth',
             'throttle:60,1',
+            'useraccess'
         ],
 
 
         'admin' => [
+            'auth',
             'throttle:60,1',
+            'permission:admin_access'
         ],
 
         'cltvo' => [
