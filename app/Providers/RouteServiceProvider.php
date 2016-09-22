@@ -75,7 +75,7 @@ class RouteServiceProvider extends ServiceProvider
     protected function mapUserRoutes()
     {
         Route::group([
-            'middleware' => 'user',
+            'middleware' => ['web','user'],
             'namespace' => $this->namespace,
             'prefix' => 'users',
         ], function ($router) {
@@ -93,7 +93,7 @@ class RouteServiceProvider extends ServiceProvider
     protected function mapAdminRoutes()
     {
         Route::group([
-            'middleware' => 'admin',
+            'middleware' => ["web",'admin'],
             'namespace' => $this->namespace,
             'prefix' => 'admin',
         ], function ($router) {
@@ -102,7 +102,7 @@ class RouteServiceProvider extends ServiceProvider
     }
 
     /**
-     * Define the "Admin" routes for the application.
+     * Define the "cltvo" routes for the application.
      *
      * These routes are typically stateless.
      *
