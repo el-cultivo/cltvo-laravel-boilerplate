@@ -35,7 +35,8 @@ class Kernel extends HttpKernel
         'user' => [
             'auth',
             'throttle:60,1',
-            'useraccess'
+            'useraccess',
+            'bindings'
         ],
 
 
