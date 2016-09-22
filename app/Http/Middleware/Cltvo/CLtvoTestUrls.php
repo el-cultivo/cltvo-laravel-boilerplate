@@ -16,7 +16,11 @@ class CLtvoTestUrls
     public function handle($request, Closure $next)
     {
         if (!env("APP_DEBUG")) {
-            return redirect('/');
+            if ($request->ajax() || $request->wantsJson()){
+                return response('Unauthorized.', 403);
+            } else {
+                return abort(403);
+            }
         }
         return $next($request);
     }

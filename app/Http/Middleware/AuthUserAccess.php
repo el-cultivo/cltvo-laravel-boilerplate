@@ -37,17 +37,23 @@ class AuthUserAccess
      */
     public function handle($request, Closure $next)
     {
-        $user_id    = $this->auth->user()->id;
-        $user_name  = $this->auth->user()->name;
+        $current_user = $this->auth->user();
+        $user_id    = $current_user->id;
+        $user_name  = $current_user->name;
 
         $parameters = $request->route()->parameters();
 
-        if ( isset($parameters["user_id"]) && $user_id != $parameters["user_id"]  ) {
-            return response('Unauthorized.', 401);
-        }
+        if (
+            ( isset($parameters["user_id"]) && $user_id != $parameters["user_id"] )  ||
+            ( isset($parameters["user_name"]) && $user_name != $parameters["user_name"]  ) ||
+            ( isset($parameters["user"]) && $current_user != $parameters["user"]  )
 
-        if ( isset($parameters["user_name"]) && $user_name != $parameters["user_name"]  ) {
-            return response('Unauthorized.', 401);
+            ) {
+            if ($request->ajax() || $request->wantsJson()){
+                return response('Unauthorized.', 401);
+            } else {
+                return abort(401);
+            }
         }
 
         return $next($request);

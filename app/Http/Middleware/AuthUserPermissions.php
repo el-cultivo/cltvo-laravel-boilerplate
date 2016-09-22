@@ -41,7 +41,7 @@ class AuthUserPermissions
             if ($request->ajax() || $request->wantsJson()){
                 return response('Unauthorized.', 401);
             } else {
-                return redirect()->guest('/');
+                return abort(401);
             }
         }
 
